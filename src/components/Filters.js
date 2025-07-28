@@ -1,23 +1,40 @@
-import React from "react";
+import React from 'react';
 
-function Filters() {
-  return (
-    <div className="ui form">
-      <h3>Animal type</h3>
-      <div className="field">
-        <select name="type" id="type" aria-label="type">
-          <option value="all">All</option>
-          <option value="cat">Cats</option>
-          <option value="dog">Dogs</option>
-          <option value="micropig">Micropigs</option>
-        </select>
-      </div>
+class Filters extends React.Component {
+  handleChange = (event) => {
+    this.props.onChangeType(event);
+  };
 
-      <div className="field">
-        <button className="ui secondary button">Find pets</button>
+  render() {
+    return (
+      <div className="ui form">
+        <h3>Animal type</h3>
+        <div className="field">
+          <select 
+            name="type" 
+            id="type" 
+            value={this.props.filters.type}
+            onChange={this.handleChange}
+            aria-label="type"
+          >
+            <option value="all">All</option>
+            <option value="cat">Cats</option>
+            <option value="dog">Dogs</option>
+            <option value="micropig">Micropigs</option>
+          </select>
+        </div>
+
+        <div className="field">
+          <button 
+            className="ui secondary button"
+            onClick={this.props.onFindPetsClick}
+          >
+            Find pets
+          </button>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default Filters;
